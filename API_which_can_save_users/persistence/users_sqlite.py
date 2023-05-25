@@ -9,12 +9,22 @@ class UsersSqlLite:
         with sqlite3.connect(self.__path) as db:
             cursor = db.cursor()
             cmd = "SELECT * FROM users"
-            cursor.execute(cmd)
-            return cursor.fetchall()
+            try:
+                cursor.execute(cmd)
+            except sqlite3.OperationalError as e:
+                if "no such table" in str(e):
+                    return []
+            else:
+                return cursor.fetchall()
 
     def add(self, name: str, email: str):
         cmd = f"INSERT INTO users (name, email) VALUES ('{name}', '{email}')"
-        self.__execute_cmd(cmd)
+        try:
+            self.__execute_cmd(cmd)
+        except sqlite3.OperationalError as e:
+            if "no such table" in str(e):
+                self.create_table()
+                self.__execute_cmd(cmd)
 
     def delete(self, id_: int):
         cmd = f"DELETE FROM users WHERE id={id_}"
@@ -32,6 +42,4 @@ class UsersSqlLite:
             db.commit()
 
 
-if __name__ == "__main__":
-    users_db = UsersSqlLite()
-    users_db.create_table()
+
