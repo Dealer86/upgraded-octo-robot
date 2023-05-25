@@ -23,6 +23,11 @@ def get_users():
     return users
 
 
+@users_router.get("{user_id}", response_model= UserInfo)
+def get_by_id(user_id: int):
+    return repo.get_by_id(user_id)
+
+
 @users_router.delete("")
 def delete_user(id: int):
     repo.delete(id)
