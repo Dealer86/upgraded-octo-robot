@@ -13,7 +13,11 @@ def add_user(user: UserAdd):
     new_user = UserFactory.create(user.name, user.email)
     repo.add(new_user)
     # return UserInfo(name=new_user.name, email=new_user.email)
-    return new_user
+    our_users = repo.get_all()
+    for u in our_users:
+        if u.name == user.name:
+            return u
+
 
 
 @users_router.get("", response_model=list[UserInfo])
@@ -27,10 +31,12 @@ def get_users():
 def get_by_id(user_id: int):
     return repo.get_by_id(user_id)
 
+
 @users_router.put("{user_id}", response_model=UserInfo)
 def update(user_id: int, user: UserUpdate):
     repo.update(user_id, user.name)
     return repo.get_by_id(user_id)
+
 
 @users_router.delete("")
 def delete_user(id: int):

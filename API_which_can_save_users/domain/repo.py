@@ -16,6 +16,7 @@ class UserRepository:
         self.__users_db.add(user.name, user.email)
         self.__load_from_db()
 
+
     def get_all(self) -> list[User]:
         print([u for u in self.__users if u.id == 2])
         return self.__users
