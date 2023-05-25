@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from email_validator import EmailNotValidError
 
+from API_which_can_save_users.api.users import users_router
 from API_which_can_save_users.domain.user_factory import UsernameNotValid
 
 # Create an API which can save your preferred films and tvshows.
