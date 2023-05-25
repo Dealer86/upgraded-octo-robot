@@ -30,6 +30,14 @@ class UsersSqlLite:
         cmd = f"DELETE FROM users WHERE id={id_}"
         self.__execute_cmd(cmd)
 
+    def get_by_id(self, id_: int) -> tuple:
+        cmd = f"SELECT * FROM users WHERE id={id_}"
+        with sqlite3.connect(self.__path) as conn:
+            cursor = conn.cursor()
+            cursor.execute(cmd)
+            x = cursor.fetchone()
+            return x
+
     def create_table(self):
         cmd = "CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, " \
               "email TEXT NOT NULL, films TEXT, shows TEXT)"
