@@ -31,5 +31,10 @@ class UserRepository:
         our_user = UserFactory.create_from_db(user_tuple)
         return our_user
 
+    def update(self, user_id: int, username: str):
+        self.__users_db.update(user_id, username)
+        self.__load_from_db()
+
+
     def __load_from_db(self):
         self.__users = [UserFactory.create_from_db(u) for u in self.__users_db.get_all()]

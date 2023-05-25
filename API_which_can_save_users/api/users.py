@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from API_which_can_save_users.api.models import UserInfo, UserAdd
+from API_which_can_save_users.api.models import UserInfo, UserAdd, UserUpdate
 from API_which_can_save_users.domain.repo import UserRepository
 from API_which_can_save_users.domain.user_factory import UserFactory
 
@@ -27,6 +27,10 @@ def get_users():
 def get_by_id(user_id: int):
     return repo.get_by_id(user_id)
 
+@users_router.put("{user_id}", response_model=UserInfo)
+def update(user_id: int, user: UserUpdate):
+    repo.update(user_id, user.name)
+    return repo.get_by_id(user_id)
 
 @users_router.delete("")
 def delete_user(id: int):

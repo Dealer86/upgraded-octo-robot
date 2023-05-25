@@ -38,6 +38,11 @@ class UsersSqlLite:
             x = cursor.fetchone()
             return x
 
+    def update(self, user_id: int, username: str):
+        cmd = f"UPDATE users SET name='{username}' WHERE id={user_id}"
+        self.__execute_cmd(cmd)
+
+
     def create_table(self):
         cmd = "CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, " \
               "email TEXT NOT NULL, films TEXT, shows TEXT)"
