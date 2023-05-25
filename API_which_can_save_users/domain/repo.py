@@ -1,6 +1,6 @@
-from web_server.domain.user import User
-from web_server.domain.user_factory import UserFactory
-from web_server.persistence.users_sqlite import UsersSqlLite
+from API_which_can_save_users.domain.user import User
+from API_which_can_save_users.domain.user_factory import UserFactory
+from API_which_can_save_users.persistence.users_sqlite import UsersSqlLite
 
 
 class UserRepository:

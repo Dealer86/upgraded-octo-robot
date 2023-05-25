@@ -1,9 +1,8 @@
 from fastapi import APIRouter
 
-from web_server.api.models import UserAdd, UserInfo
-from web_server.domain.repo import UserRepository
-
-from web_server.domain.user_factory import UserFactory
+from API_which_can_save_users.api.models import UserInfo, UserAdd
+from API_which_can_save_users.domain.repo import UserRepository
+from API_which_can_save_users.domain.user_factory import UserFactory
 
 users_router = APIRouter(prefix="/users")
 repo = UserRepository()

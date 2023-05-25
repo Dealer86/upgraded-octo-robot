@@ -1,5 +1,7 @@
-from web_server.domain.user import User
+
 from email_validator import validate_email, EmailNotValidError
+
+from API_which_can_save_users.domain.user import User
 
 
 class UsernameNotValid(Exception):
