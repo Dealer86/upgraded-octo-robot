@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from email_validator import EmailNotValidError
 
 from API_which_can_save_users.api.users import users_router
+from API_which_can_save_users.domain.repo import InvalidUserId
 from API_which_can_save_users.domain.user_factory import UsernameNotValid
 
 # Create an API which can save your preferred films and tvshows.
@@ -32,6 +33,11 @@ def return_400(_: Request, exc: UsernameNotValid):
 @app.exception_handler(EmailNotValidError)
 def return_400(_: Request, exc: EmailNotValidError):
     return JSONResponse(status_code=400, content=str(exc))
+
+
+@app.exception_handler(InvalidUserId)
+def return_404(_: Request, e: InvalidUserId):
+    return JSONResponse(status_code=404, content=str(e))
 
 
 if __name__ == "__main__":
