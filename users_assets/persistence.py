@@ -39,6 +39,12 @@ class UserFile:
         with open(self.__file_path, "w") as f:
             json.dump([user.to_dict() for user in user_list], f, indent=4)
 
+    # def __save_all(self, user_list: list[User]):
+    #     data = [user.to_dict() for user in user_list]
+    #     json_data = json.dumps(data, indent=4)
+    #     with open(self.__file_path, "w") as f:
+    #         f.write(json_data)
+
 
 if __name__ == "__main__":
     user1 = User("adis", "example@gmail.com")
