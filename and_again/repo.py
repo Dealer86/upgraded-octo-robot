@@ -44,13 +44,9 @@ class UserFile:
             f.write(json_prep)
 
 
-
 if __name__ == "__main__":
     user1 = User(1, "adi")
     repo = UserFile("uzar.json")
     # repo.add(user1)
     asset1 = Asset("Mar", 100, "ROMANIA")
     repo.add_asset_to_user(user1, asset1)
-
-
-

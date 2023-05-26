@@ -25,6 +25,6 @@ class User:
 
     @classmethod
     def from_dict(cls, d: dict):
-        return User(id_=d["id_"], name=d["name"], asset=[Asset.from_dict(a) for a in d["asset"]])
-
-
+        return User(
+            id_=d["id_"], name=d["name"], asset=[Asset.from_dict(a) for a in d["asset"]]
+        )

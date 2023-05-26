@@ -22,4 +22,3 @@ class Asset:
     @classmethod
     def from_dict(cls, d: dict):
         return Asset(ticker=d["ticker"], price=d["price"], country=d["country"])
-
