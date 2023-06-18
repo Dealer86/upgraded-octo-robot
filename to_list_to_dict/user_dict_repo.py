@@ -1,7 +1,9 @@
 import os
 import json
 
+from solid.single_responsibility_principle import Logger
 from to_list_to_dict.user import User
+log = Logger("2.log")
 
 
 class UserDictRepo:
@@ -9,6 +11,7 @@ class UserDictRepo:
         self.__file_path = file_path
 
     def get_all(self):
+        log.logger("UserDictRepo get all method is called", level="info")
         if not os.path.exists(self.__file_path):
             return []
         try:
@@ -18,6 +21,7 @@ class UserDictRepo:
             print(content)
             return [User.from_dict(x) for x in content]
         except Exception as e:
+            log.logger(f"Method get_all can not be used. Exception: {str(e)}", level="error")
             print(str(e))
             return []
 
