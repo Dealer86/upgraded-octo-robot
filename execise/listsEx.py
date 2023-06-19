@@ -22,8 +22,3 @@ if __name__ == "__main__":
     our_list = [1, 2, 3, 4, 5]
     swap_list(our_list)
     print(swap_list.__doc__)
-
-
-
-
-
